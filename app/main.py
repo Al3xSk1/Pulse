@@ -1,11 +1,24 @@
+# app/main.py
+
 from fastapi import FastAPI
-from app import config
+from app.db import Base, engine
+from app.api.routes import router as api_router
 
-print(config.DB_CONFIG["host"])
-print(config.QBO_CLIENT_ID)
+# --------------------------------------
+# Initialize FastAPI app
+# --------------------------------------
+app = FastAPI(
+    title="Pulse API",
+    description="Financial analytics and risk detection system for QBO data",
+    version="0.1.0",
+)
 
-app = FastAPI()
+# --------------------------------------
+# Create all tables (in dev, not for prod)
+# --------------------------------------
+Base.metadata.create_all(bind=engine)
 
-@app.get("/")
-def read_root():
-    return {"status": "Pulse backend is live (WIP)"}
+# --------------------------------------
+# Include route modules
+# --------------------------------------
+app.include_router(api_router)

@@ -1,16 +1,14 @@
-# Dockerfile
-FROM python:3.13.3-slim
+FROM python:3.13-slim
 
+# Set working directory inside the container
 WORKDIR /app
 
 # Install dependencies
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy app files
+# Copy project files into container
 COPY . .
 
-# Expose FastAPI port
+# Expose app port
 EXPOSE 8000
-
-# Entrypoint is handled by docker-compose `command`
