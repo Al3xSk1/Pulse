@@ -39,4 +39,4 @@ Pulse is an open-source analytics platform being developed for accounting firms 
 1. **Clone the Repository**
    ```bash
    git clone https://github.com/Al3xSk1/Pulse.git
-   cd pulse
+   cd Pulse
